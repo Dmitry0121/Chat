@@ -1,0 +1,51 @@
+﻿@model ChatWeb.Models.UserViewModel
+
+@{
+    ViewBag.Title = "LogIn";
+}
+
+<h2>LogIn</h2>
+
+@using (Html.BeginForm("LogIn", "Account", FormMethod.Post, new { role = "form" }))
+{
+    <fieldset>
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.EditorFor(a => a.Login, new
+            {
+                htmlAttributes = new { @class = "form-control", type = "text", autofocus = "autofocus", placeholder = "Ім'я користувача", required = "", oninvalid = "this.setCustomValidity('Поле має бути встановлено')", oninput = "setCustomValidity('')" }
+            })
+            @Html.ValidationMessageFor(m => m.Login)
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(a => a.Password, new
+            {
+                htmlAttributes = new { @class = "form-control", type = "password", placeholder = "Пароль", required = "", oninvalid = "this.setCustomValidity('Поле має бути встановлено')", oninput = "setCustomValidity('')" }
+            })
+            @Html.ValidationMessageFor(m => m.Password)
+        </div>
+        <button type="submit" value="LogIn" class="btn btn-lg btn-success btn-block">LogIn</button>
+    </fieldset>
+}
+
+@using (Html.BeginForm("Registration", "Account", FormMethod.Post, new { role = "form" }))
+{
+    <fieldset>
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.EditorFor(a => a.Login, new
+            {
+                htmlAttributes = new { @class = "form-control", type = "text", autofocus = "autofocus", placeholder = "Ім'я користувача", required = "", oninvalid = "this.setCustomValidity('Поле має бути встановлено')", oninput = "setCustomValidity('')" }
+            })
+            @Html.ValidationMessageFor(m => m.Login)
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(a => a.Password, new
+            {
+                htmlAttributes = new { @class = "form-control", type = "password", placeholder = "Пароль", required = "", oninvalid = "this.setCustomValidity('Поле має бути встановлено')", oninput = "setCustomValidity('')" }
+            })
+            @Html.ValidationMessageFor(m => m.Password)
+        </div>
+        <button type="submit" value="Registration" class="btn btn-lg btn-success btn-block">Registration</button>
+    </fieldset>
+}

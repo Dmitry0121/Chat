@@ -14,8 +14,8 @@ using System.Security.Claims;
 
 namespace Chat.Controllers
 {
-    [Produces("application/json")]
-    [Route("api/Account")]
+    //[Produces("application/json")]
+   // [Route("api/Account")]
     public class AccountController : Controller
     {
         IUserService _userService;
@@ -50,12 +50,12 @@ namespace Chat.Controllers
             var now = DateTime.UtcNow;            
             var jwt = new JwtSecurityToken
             (
-                issuer: TokenData.ISSUER,
-                audience: TokenData.AUDIENCE,
+                issuer: AuthOptions.ISSUER,
+                audience: AuthOptions.AUDIENCE,
                 notBefore: now,
                 claims: identity.Claims,
-                expires: now.Add(TimeSpan.FromMinutes(TokenData.LIFETIME)),
-                signingCredentials: new SigningCredentials(TokenData.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256)
+                expires: now.Add(TimeSpan.FromMinutes(AuthOptions.LIFETIME)),
+                signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256)
             );
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
 

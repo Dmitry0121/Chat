@@ -1,0 +1,88 @@
+﻿@model ChatWeb.Models.UserViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="text-mess">
+    <ul></ul>
+</div>
+
+
+
+<input class="form-control" type="text" id="messege" />
+<button class="btn btn-primary" id="send">Ok</button>
+
+
+
+@section scripts
+{
+    <script>
+    $(function () {
+        $("#send").click(function (event)
+        {
+            event.preventDefault();
+            SendMessage();
+        });
+    });
+
+     function SendMessage()
+     {
+        var message =
+		{
+            UserId: @ViewBag.UserId,   //Model.Id,
+            Text : $('#messege').val()//,
+            //DateTimeSend: DateTime.Now
+		};
+			$.ajax({
+                type: "GET",
+                url: '/api/chat/',
+                //data: JSON.stringify(message),	            
+	            success: function(data)
+	            {
+                    alert("ok");
+                },
+                error: function (x, y, z)
+                {
+                    alert(x + '\n' + y + '\n' + z);
+                }
+			});
+	}
+
+
+    @*function Listener()
+    {
+        $.ajax({
+	        type: "GET",
+	        url: '@Url.RouteUrl("WebApi", new {httproute = "", controller = "Chat" })',
+	        success: function(data)
+	        {
+	            WriteResponse(data);
+	        }
+	    });
+    }
+
+
+
+
+
+
+    function WriteResponse(list)
+    {
+	    if(list.length > 0)
+	    {
+		    $.each(list, function (index, mess)
+		    {
+			    if(mess.UserId == 1)
+			    {
+				    $(".text-mess ul").append('<li style="align=right">' + mess.Text + "</li>");
+			    }
+			    else
+			    {
+				    $(".text-mess ul").append('<li style="align=left">' + mess.Text + " ------ " + mess.UserId + "</li>");
+			    }
+		    });
+	    }
+    }*@
+    </script>
+    }

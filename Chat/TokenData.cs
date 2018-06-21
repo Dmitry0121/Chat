@@ -3,10 +3,10 @@ using System.Text;
 
 namespace Chat
 {
-    public class TokenData
+    public class AuthOptions
     {
         public const string ISSUER = "MyToken";
-        public const string AUDIENCE = "http://localhost:5588/";
+        public const string AUDIENCE = "http://localhost:11906/";
         const string KEY = "secret_key_!@#$%^^&*()_";
         public const int LIFETIME = 60;
 

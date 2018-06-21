@@ -1,22 +1,20 @@
-﻿using System;
+﻿using AutoMapper;
+using ChatService.Abstract;
+using ChatService.DTO;
+using ChatWeb.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
-using ChatService.Abstract;
-using Chat.Models;
-using AutoMapper;
-using ChatService.DTO;
+using System.Net;
+using System.Net.Http;
+using System.Web.Mvc;
+//using System.Web.Http;
 
-namespace Chat.Controllers
+namespace ChatWeb.Controllers
 {
-
-    //[Produces("application/json")]
-    //[Route("api/Chat")]
-    [Route("api/[controller]")]
-    public class ChatController : Controller
+    [Authorize]
+    //[Route("api/[controller]")]
+    public class ChatController : System.Web.Http.ApiController
     {
         IUserService _userService;
         IMessageService _messageService;
@@ -32,18 +30,19 @@ namespace Chat.Controllers
             _messageService = messageService;
             _mapper = new MapperConfiguration(cfg => cfg.CreateMap<MessageDTO, MessageViewModel>()).CreateMapper();
         }
-        /*
-        [Authorize]
-        public IActionResult GetMessages()
+
+        // [Route("getmessages")]
+        [HttpGet]
+        public IEnumerable<MessageViewModel> Get()
         {
             var messagesDto = _messageService.GetMessages();
             var message = _mapper.Map<IEnumerable<MessageDTO>, List<MessageViewModel>>(messagesDto);
-            return Ok(message);
+            return message;
         }
 
         [HttpPost]
-        [Authorize]
-        public bool SendMessage (MessageViewModel message)
+       // [Route("sendmessage")]
+        public bool Post(MessageViewModel message)
         {
             try
             {
@@ -55,20 +54,6 @@ namespace Chat.Controllers
             {
                 return false;
             }
-        }*/
-
-        [Authorize]
-        [Route("getlogin")]
-        public IActionResult GetLogin()
-        {            
-            return Ok($"Ваш логин: {User.Identity.Name}");
-        }
-
-        [Authorize]
-        [Route("getrole")]
-        public IActionResult GetRole()
-        {
-            return Ok("Ваша роль: администратор");
         }
     }
 }

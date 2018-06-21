@@ -25,11 +25,11 @@ namespace Chat
                         options.TokenValidationParameters = new TokenValidationParameters
                         {
                             ValidateIssuer = true,
-                            ValidIssuer = TokenData.ISSUER,
+                            ValidIssuer = AuthOptions.ISSUER,
                             ValidateAudience = true,
-                            ValidAudience = TokenData.AUDIENCE,
+                            ValidAudience = AuthOptions.AUDIENCE,
                             ValidateLifetime = true,
-                            IssuerSigningKey = TokenData.GetSymmetricSecurityKey(),
+                            IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
                             ValidateIssuerSigningKey = true,
                         };
                     });
