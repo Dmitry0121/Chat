@@ -6,6 +6,7 @@ namespace ChatService.Abstract
     public interface IMessageService
     {
         IEnumerable<MessageDTO> GetMessages();
-        void SendMessage(MessageDTO message);       
+        IEnumerable<MessageDTO> GetNewMessages(int messageId);
+        int SendMessage(MessageDTO message);       
     }
 }

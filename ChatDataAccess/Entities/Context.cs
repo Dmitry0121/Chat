@@ -20,7 +20,7 @@ namespace ChatDataAccess.Entities
         {
             context.Users.AddRange(new List<User> {
                 new User {Login="admin", Password = "admin"},
-                new User {Login="usesr", Password = "user"}
+                new User {Login="user", Password = "user"}
             });
         }
     }

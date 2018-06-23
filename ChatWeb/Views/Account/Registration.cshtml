@@ -1,13 +1,13 @@
 ﻿@model ChatWeb.Models.UserViewModel
 
 @{
-    ViewBag.Title = "LogIn";
+    ViewBag.Title = "Registration";
     Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
 
 <div class="bloc-main">
     <div class="bloc-content">
-        @using (Html.BeginForm("LogIn", "Account", FormMethod.Post, new { role = "form" }))
+        @using (Html.BeginForm("Registration", "Account", FormMethod.Post, new { role = "form" }))
         {
             @Html.ValidationSummary(true)
 
@@ -23,8 +23,8 @@
             })
             @Html.ValidationMessageFor(m => m.Password)
 
-            <button type="submit" value="LogIn" class="send-login-button">LogIn</button>
+            <button type="submit" value="Registration" class="send-login-button">Registration</button>
         }
-        @Html.ActionLink("Registration", "Registration", "Account",null, new { @class = "bloc-link" })
+        @Html.ActionLink("Back", "LogIn", "Account", null, new { @class = "bloc-link" })
     </div>
 </div>

@@ -24,10 +24,16 @@ namespace ChatService.Services
             return _mapper.Map<IEnumerable<Message>, List<MessageDTO>>(messages);
         }
 
-        public void SendMessage(MessageDTO messageDto)
+        public IEnumerable<MessageDTO> GetNewMessages(int messageId)
+        {
+            var messages = _messageRepository.GetNew(messageId);
+            return _mapper.Map<IEnumerable<Message>, List<MessageDTO>>(messages);
+        }
+
+        public int SendMessage(MessageDTO messageDto)
         {
             var message = _mapper.Map<MessageDTO, Message>(messageDto);
-            _messageRepository.Create(message);
+            return _messageRepository.Create(message);
         }
     }
 }

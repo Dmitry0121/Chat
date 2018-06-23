@@ -2,10 +2,6 @@
 using ChatService.Abstract;
 using ChatService.DTO;
 using ChatWeb.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ChatWeb.Controllers
@@ -26,9 +22,9 @@ namespace ChatWeb.Controllers
         {
             return View();
         }
-
-        [HttpPost]
+                
         [AllowAnonymous]
+        [HttpPost]
         public ActionResult LogIn(UserViewModel userViewModel)
         {
             if (ModelState.IsValid)
@@ -49,10 +45,16 @@ namespace ChatWeb.Controllers
             {
                 return View("LogIn", userViewModel);
             }
-        }              
+        }
 
-        [HttpPost]
         [AllowAnonymous]
+        public ActionResult Registration()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
         public ActionResult Registration(UserViewModel userViewModel)
         {
             if (ModelState.IsValid)
@@ -60,7 +62,6 @@ namespace ChatWeb.Controllers
                 var userDto = _mapper.Map<UserViewModel, UserDTO>(userViewModel);
                 _userService.Registration(userDto);
             }
-
             return RedirectToAction("LogIn", "Account");
         }
 
@@ -68,8 +69,6 @@ namespace ChatWeb.Controllers
         public ActionResult Logout()
         {
             Session.Abandon();
-           // Session["Id"] = null;
-           // Session["Login"] = null;
             return RedirectToAction("LogIn", "Account");
         }
     }

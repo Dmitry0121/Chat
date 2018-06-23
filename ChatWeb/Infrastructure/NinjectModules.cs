@@ -1,10 +1,6 @@
 ﻿using ChatService.Abstract;
 using ChatService.Services;
 using Ninject.Modules;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace ChatWeb.Infrastructure
 {

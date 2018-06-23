@@ -15,7 +15,6 @@ namespace ChatDataAccess.Concrete
 
         public User GetByLoginAndPassword(string login, string password)
         {
-            //return _context.Set<User>().SingleOrDefault(p => p.Login == login && p.Password == password);
             return _context.Set<User>().Where(p => p.Login == login && p.Password == password).FirstOrDefault();
         }
 

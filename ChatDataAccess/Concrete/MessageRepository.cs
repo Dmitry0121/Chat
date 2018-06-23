@@ -20,11 +20,18 @@ namespace ChatDataAccess.Concrete
             return query.OrderBy(p=>p.DateTimeSend);
         }
 
-        public void Create(Message message)
+        public IEnumerable<Message> GetNew(int messageId)
+        {
+            IQueryable<Message> query = _context.Set<Message>().Where(p=>p.Id > messageId);
+            return query.OrderBy(p => p.DateTimeSend);
+        }
+
+        public int Create(Message message)
         {
             _context.Set<Message>().Add(message);
             _context.SaveChanges();
             SaveChanges();
+            return message.Id;
         }
 
         public void SaveChanges()
