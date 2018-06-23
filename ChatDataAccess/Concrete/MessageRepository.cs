@@ -9,9 +9,9 @@ namespace ChatDataAccess.Concrete
     {
         Context _context;
 
-        public MessageRepository()
+        public MessageRepository(string connectionString)
         {
-            _context = new Context();
+            _context = new Context(connectionString);
         }
 
         public IEnumerable<Message> GetAll()

@@ -23,7 +23,7 @@ namespace ChatWeb
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             NinjectModule orderModule = new NinjectModules();
-            NinjectModule serviceModule = new ServiceModule();
+            NinjectModule serviceModule = new ServiceModule("ChatDB");
             var kernel = new StandardKernel(orderModule, serviceModule);
             DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
         }

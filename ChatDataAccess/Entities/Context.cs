@@ -8,9 +8,13 @@ namespace ChatDataAccess.Entities
         public DbSet<Message> Messages { get; set; }
         public DbSet<User> Users { get; set; }
 
-        public Context() : base("ChatDB")
+        static Context()
         {
             Database.SetInitializer<Context>(new MyDatabaseContextInitializer());
+        }
+
+        public Context(string connectionString) : base(connectionString)
+        {
         }
     }
 
